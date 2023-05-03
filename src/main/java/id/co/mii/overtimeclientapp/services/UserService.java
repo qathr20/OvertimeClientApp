@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Service;
 import org.springframework.http.HttpEntity;
 
 import id.co.mii.overtimeclientapp.models.Role;
@@ -14,7 +15,7 @@ import id.co.mii.overtimeclientapp.models.User;
 import id.co.mii.overtimeclientapp.models.dto.requests.UserRequest;
 
 
-
+@Service
 public class UserService {
 
     private RestTemplate restTemplate;
