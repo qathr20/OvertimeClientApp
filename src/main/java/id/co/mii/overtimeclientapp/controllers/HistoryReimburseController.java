@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import id.co.mii.overtimeclientapp.models.HistoryReimburse;
+import id.co.mii.overtimeclientapp.models.dto.requests.HistoryReimburseRequest;
 import id.co.mii.overtimeclientapp.services.HistoryReimburseService;
 import lombok.AllArgsConstructor;
 
@@ -24,10 +25,27 @@ public class HistoryReimburseController {
         return "historyReimburse/index";
     }
 
+    @GetMapping("/{id}")
+    public String indexId(@PathVariable int id, Model model) {
+        model.addAttribute("historyReimburse", historyReimburseService.getById(id));
+        return "historyReimburse/detail-form";
+    }
+
+    @GetMapping("/create")
+    public String createView(HistoryReimburseRequest historyReimburseRequest) {
+        return "historyReimburse/create-form";
+    }
+
     @PostMapping
-    public String create(HistoryReimburse historyReimburse) {
-        historyReimburseService.create(historyReimburse);
+    public String create(HistoryReimburseRequest historyReimburseRequest) {
+        historyReimburseService.create(historyReimburseRequest);
         return "redirect:/historyReimburse";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateView(@PathVariable int id, Model model) {
+        model.addAttribute("historyReimburse", historyReimburseService.getById(id));
+        return "historyReimburse/update-form";
     }
 
     @PutMapping("/{id}")

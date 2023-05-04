@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.mii.overtimeclientapp.models.Reimburse;
+import id.co.mii.overtimeclientapp.models.dto.requests.ReimburseRequest;
 
 @Service
 public class ReimburseService {
@@ -43,11 +44,11 @@ public class ReimburseService {
                 }).getBody();
     }
 
-    public Reimburse create(Reimburse reimburse) {
+    public Reimburse create(ReimburseRequest reimburseRequest) {
         return restTemplate.exchange(
                 url,
                 HttpMethod.POST,
-                new HttpEntity(reimburse),
+                new HttpEntity(reimburseRequest),
                 new ParameterizedTypeReference<Reimburse>() {
                 }).getBody();
     }

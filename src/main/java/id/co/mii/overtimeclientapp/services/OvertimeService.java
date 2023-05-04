@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.mii.overtimeclientapp.models.Overtime;
+import id.co.mii.overtimeclientapp.models.dto.requests.OvertimeRequest;
 
 @Service
 public class OvertimeService {
@@ -43,11 +44,11 @@ public class OvertimeService {
                 }).getBody();
     }
 
-    public Overtime create(Overtime overtime) {
+    public Overtime create(OvertimeRequest overtimeRequest) {
         return restTemplate.exchange(
                 url,
                 HttpMethod.POST,
-                new HttpEntity(overtime),
+                new HttpEntity(overtimeRequest),
                 new ParameterizedTypeReference<Overtime>() {
                 }).getBody();
     }

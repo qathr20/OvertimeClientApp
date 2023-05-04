@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import id.co.mii.overtimeclientapp.models.Overtime;
+import id.co.mii.overtimeclientapp.models.dto.requests.OvertimeRequest;
 import id.co.mii.overtimeclientapp.services.OvertimeService;
 import lombok.AllArgsConstructor;
 
@@ -24,10 +25,27 @@ public class OvertimeController {
         return "overtime/index";
     }
 
+    @GetMapping("/{id}")
+    public String indexId(@PathVariable int id, Model model) {
+        model.addAttribute("overtime", overtimeService.getById(id));
+        return "overtime/detail-form";
+    }
+
+    @GetMapping("/create")
+    public String createView(OvertimeRequest overtimeRequest) {
+        return "overtime/create-form";
+    }
+
     @PostMapping
-    public String create(Overtime overtime) {
-        overtimeService.create(overtime);
+    public String create(OvertimeRequest overtimeRequest) {
+        overtimeService.create(overtimeRequest);
         return "redirect:/overtime";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateView(@PathVariable int id, Model model) {
+        model.addAttribute("overtime", overtimeService.getById(id));
+        return "overtime/update-form";
     }
 
     @PutMapping("/{id}")
@@ -40,5 +58,4 @@ public class OvertimeController {
     public String delete(@PathVariable int id) {
         overtimeService.delete(id);
         return "redirect:/overtime";
-    }
-}
+    }}
