@@ -60,5 +60,14 @@ public class ProjectService {
                 new ParameterizedTypeReference<Project>() {
                 }).getBody();
     }
+
+    public Project delete(int id) {
+        return restTemplate.exchange(
+                url + "/" + id,
+                HttpMethod.DELETE,
+                null,
+                new ParameterizedTypeReference<Project>() {
+                }).getBody();
+    }
     
 }

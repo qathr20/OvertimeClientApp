@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import id.co.mii.overtimeclientapp.models.Employee;
+import id.co.mii.overtimeclientapp.models.dto.requests.UserRequest;
 
 
 @Service
@@ -43,14 +44,15 @@ public class EmployeeService {
                 }).getBody();
     }
 
-    public Employee create(Employee employee) {
+    public Employee create(UserRequest userRequest) {
         return restTemplate.exchange(
                 url,
                 HttpMethod.POST,
-                new HttpEntity(employee),
+                new HttpEntity(userRequest),
                 new ParameterizedTypeReference<Employee>() {
                 }).getBody();
     }
+
 
     public Employee update(int id, Employee employee) {
         return restTemplate.exchange(
