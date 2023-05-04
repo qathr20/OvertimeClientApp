@@ -10,7 +10,7 @@ public class OvertimeClientAppApplication {
 		SpringApplication.run(OvertimeClientAppApplication.class, args);
 
 		System.out.println();
-		System.out.println("Client App is Running");
+		System.out.println("Client App is Running.....");
 	}
 
 }
