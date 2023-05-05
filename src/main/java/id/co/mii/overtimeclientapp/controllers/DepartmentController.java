@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import id.co.mii.overtimeclientapp.models.Department;
+import id.co.mii.overtimeclientapp.models.dto.requests.DepartmentRequest;
 import id.co.mii.overtimeclientapp.services.DepartmentService;
 import lombok.AllArgsConstructor;
 
@@ -27,13 +28,13 @@ public class DepartmentController {
     }
 
     @GetMapping("/create")
-    public String createView(Department department, Model model) {
+    public String createView(DepartmentRequest departmentRequest, Model model) {
         return "department/create-form";
     }
 
     @PostMapping
-    public String create(Department department) {
-        departmentService.create(department);
+    public String create(DepartmentRequest departmentRequest) {
+        departmentService.create(departmentRequest);
         return "redirect:/department";
     }
 

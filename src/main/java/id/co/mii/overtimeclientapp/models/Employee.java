@@ -18,6 +18,8 @@ public class Employee {
     private Boolean status;
     private int payroll;
     private Department department;
+    private List<Employee> manager;
+    private List<Employee> hr;
     private User user;
     private List<Project> project;
     

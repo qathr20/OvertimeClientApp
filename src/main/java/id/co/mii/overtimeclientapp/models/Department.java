@@ -12,6 +12,6 @@ public class Department {
     private Integer id;
     private String name;
     private Employee manager;
-    private Employee hrd;
+    private Employee hr;
     
 }

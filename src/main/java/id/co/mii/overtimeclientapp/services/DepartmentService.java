@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import id.co.mii.overtimeclientapp.models.Department;
+import id.co.mii.overtimeclientapp.models.dto.requests.DepartmentRequest;
 
 @Service
 public class DepartmentService {
@@ -43,11 +44,11 @@ public class DepartmentService {
                 }).getBody();
     }
 
-    public Department create(Department department) {
+    public Department create(DepartmentRequest departmentRequest) {
         return restTemplate.exchange(
                 url,
                 HttpMethod.POST,
-                new HttpEntity(department),
+                new HttpEntity(departmentRequest),
                 new ParameterizedTypeReference<Department>() {
                 }).getBody();
     }
