@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Admin Dashboard | Group 7 </title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="../../static/css/style1.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
+   
+</head>
+
+
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i><img align="top"  src="../img/overtime.png" width="150" height="150" ></i>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="index.html" >
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="DataReimburse.html">
+                    <i class='bx bx-money'></i>
+                    <span class="links_name">Data Reimburse</span>
+                </a>
+            </li>
+            <li>
+                <a href="DataOvertime.html">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Data Overtime</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="project.html">
+                    <i class='bx bx-book-alt'></i>
+                    <span class="links_name">Project</span>
+                </a>
+            </li>
+            <li>
+                <a href="karyawan.html" class="active">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Karyawan</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="project_karyawan.html">
+                    <i class='bx bx-task'></i>
+                    <span class="links_name">Projek Karyawan</span>
+                </a>
+            </li>
+            <li>
+                <a href="departemen.html">
+                    <i class='bx bx-building'></i>
+                    <span class="links_name">Departemen</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="#">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">HR Dashboard</span>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <i class='bx bxs-user bx-sm'></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Profil</a>
+                    <a href="#">logout</a>
+                </div>
+            </div>
+        </nav>
+
+
+
+        <div class="home-content">
+            <div class="title">Tambah Data Karyawan</div>
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    
+                    <div class="container">
+                        <form th:action="@{/karyawan}" th:object="${karyawan}" th:method="POST">
+                            <label for="status" class="form-label">Nama Departemen</label>
+                            <select class="form-select" th:field="*{karyawan.id}">
+                                <option value="0" disabled selected>Pilih Departemen</option>
+                                <option th:each="karyawan : ${karyawan}" th:text="${karyawan.departemen}" th:value="${karyawanid}">
+                                </option>
+                            </select>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nama</label>
+                                <input type="text" class="form-control" th:field="*{name}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Username</label>
+                                <input type="text" class="form-control" th:field="*{Username}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Password</label>
+                                <input type="text" class="form-control" th:field="*{password}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Phone</label>
+                                <input type="text" class="form-control" th:field="*{phone}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Email</label>
+                                <input type="text" class="form-control" th:field="*{email}">
+                            </div>
+                            <fieldset>
+                                <label for="name" class="form-label">Status</label>
+                            
+                                <div class="mb-3">
+                                  <input type="radio" id="status" name="drone" value="aktif" checked>
+                                  <label for="aktif">aktif</label>
+
+                                    <input type="radio" id="status" name="drone" value="tidak_aktif" >
+                                    <label for="tidak_aktif">Tidak Aktif</label>
+                                </div>
+                            </fieldset>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Payroll</label>
+                                <input type="text" class="form-control" th:field="*{payroll}">
+                            </div>
+
+
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+</body>
+
+</html>
